@@ -6,5 +6,6 @@
   "artifactId": "yapily-sdk",
   "artifactVersion": "1.0.0",
   "developerName": "developer@yapily.com",
-  "asyncNative": true
+  "asyncNative": true,
+  "library": "webclient"
 }
