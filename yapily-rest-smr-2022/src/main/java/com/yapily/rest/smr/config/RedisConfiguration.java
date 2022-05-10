@@ -10,7 +10,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.yapily.sdk.model.ApiResponseOfPaymentAuthorisationRequestResponse;
+import com.yapily.sdk.model.PaymentRequest;
 
 @Configuration
 public class RedisConfiguration {
@@ -20,14 +20,14 @@ public class RedisConfiguration {
     }
 
     @Bean
-    public ReactiveRedisTemplate<String, ApiResponseOfPaymentAuthorisationRequestResponse> pendingPaymentTemplate(ObjectMapper objectMapper, ReactiveRedisConnectionFactory connectionFactory) {
+    public ReactiveRedisTemplate<String, PaymentRequest> pendingPaymentTemplate(ObjectMapper objectMapper, ReactiveRedisConnectionFactory connectionFactory) {
         StringRedisSerializer keySerializer = new StringRedisSerializer();
-        Jackson2JsonRedisSerializer<ApiResponseOfPaymentAuthorisationRequestResponse> serializer = new Jackson2JsonRedisSerializer<>(ApiResponseOfPaymentAuthorisationRequestResponse.class);
+        Jackson2JsonRedisSerializer<PaymentRequest> serializer = new Jackson2JsonRedisSerializer<>(PaymentRequest.class);
         serializer.setObjectMapper(objectMapper);
-        RedisSerializationContext.RedisSerializationContextBuilder<String, ApiResponseOfPaymentAuthorisationRequestResponse> builder =
+        RedisSerializationContext.RedisSerializationContextBuilder<String, PaymentRequest> builder =
                 RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
 
-        RedisSerializationContext<String, ApiResponseOfPaymentAuthorisationRequestResponse> context = builder.hashValue(serializer).build();
+        RedisSerializationContext<String, PaymentRequest> context = builder.hashValue(serializer).build();
         return new ReactiveRedisTemplate<>(connectionFactory, context);
     }
 
