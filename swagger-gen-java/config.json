@@ -1,0 +1,9 @@
+{
+  "packageVersion": "1.0.0",
+  "groupId": "com.yapily.api",
+  "apiPackage": "com.yapily.sdk.api",
+  "modelPackage": "com.yapily.sdk.model",
+  "artifactId": "yapily-sdk",
+  "artifactVersion": "1.0.0",
+  "developerName": "developer@yapily.com"
+}
