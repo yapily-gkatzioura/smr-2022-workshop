@@ -11,6 +11,9 @@ swagger-gen-java/yapily-sdk
 swagger-gen-java/openapitools.json
 swagger-gen-java/openapitools.json
 
+rest-api-gen-spring/yapily-smr-2022-rest
+
+
 # Compiled Java class files
 *.class
 
