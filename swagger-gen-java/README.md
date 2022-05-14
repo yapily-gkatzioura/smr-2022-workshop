@@ -16,6 +16,13 @@ npx @openapitools/openapi-generator-cli config-help -g java
 
 ## Generate script ##
 
-```aidl
+```bash
 ./generate.sh
+```
+
+### Compile generated sdk ###
+
+```bash
+cd yapily-sdk
+mvn clean install
 ```

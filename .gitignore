@@ -9,6 +9,7 @@ dist/
 
 swagger-gen-java/yapily-sdk
 swagger-gen-java/openapitools.json
+swagger-gen-java/openapitools.json
 
 # Compiled Java class files
 *.class
