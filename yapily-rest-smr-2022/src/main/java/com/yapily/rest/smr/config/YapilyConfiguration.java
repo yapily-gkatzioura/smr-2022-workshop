@@ -6,9 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.yapily.sdk.ApiClient;
 import com.yapily.sdk.api.AuthorisationsApi;
+import com.yapily.sdk.api.ConsentsApi;
 import com.yapily.sdk.api.PaymentsApi;
-import com.yapily.sdk.auth.HttpBasicAuth;
-import com.yapily.sdk.model.PaymentAuthorisationRequest;
 
 import io.swagger.annotations.Api;
 
@@ -32,6 +31,11 @@ public class YapilyConfiguration {
     @Bean
     public PaymentsApi paymentsApi(ApiClient apiClient) {
         return new PaymentsApi(apiClient);
+    }
+
+    @Bean
+    public ConsentsApi consentsApi(ApiClient apiClient) {
+        return new ConsentsApi(apiClient);
     }
 
 }

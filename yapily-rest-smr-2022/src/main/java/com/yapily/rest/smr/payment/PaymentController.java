@@ -1,6 +1,7 @@
 package com.yapily.rest.smr.payment;
 
 import java.util.Base64;
+import java.util.UUID;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yapily.rest.smr.repository.PaymentRepository;
 import com.yapily.sdk.api.AuthorisationsApi;
+import com.yapily.sdk.api.ConsentsApi;
 import com.yapily.sdk.api.PaymentsApi;
 import com.yapily.sdk.model.ApiResponseOfPaymentAuthorisationRequestResponse;
 import com.yapily.sdk.model.ApiResponseOfPaymentResponse;
@@ -32,10 +34,23 @@ public class PaymentController {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    @GetMapping("/{id}/status")
-    public Mono<String> retrieve(@PathVariable String id) {
-        return Mono.just(id);
-    }
+    @Autowired
+    private ConsentsApi consentsApi;
+
+//    @GetMapping("/{paymentId}/status")
+//    public Mono<String> retrieve(@PathVariable String paymentId) {
+//        return
+//        return consentsApi.getConsentById(UUID.fromString(consentId))
+//                .map(c -> {
+//                    paymentRepository.getExecuted(consentId)
+//                    paymentRepository.getPending(consentId).map(p -> {
+//                        paymentsApi.getPayments(p.)
+//                        //return paymentsApi.getPayments();
+//                    })
+//
+//                });
+//        return Mono.just("");
+//    }
 
     @GetMapping("/collect")
     public Mono<ApiResponseOfPaymentResponse> collect(String consent) {
@@ -48,6 +63,9 @@ public class PaymentController {
         return paymentRepository.getPending(consentId)
                                 .flatMap(a ->
                                      paymentsApi.createPayment(consent, a,null,null,null,false)
+                                             .flatMap(r ->
+                                                      paymentRepository.storeExecuted(r.getData().getId(), r.getData()).map(v -> r)
+                                                  )
                                 );
     }
 

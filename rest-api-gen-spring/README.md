@@ -105,6 +105,7 @@ public class YapilyConfiguration {
 
 ### Adding Redis Configuration ###
 
+[YapilyConfiguration](com.yapily.config.RedisConfiguration.java)
 ```java
 @Configuration
 public class RedisConfiguration {
@@ -127,3 +128,27 @@ public class RedisConfiguration {
 }
 ```
 
+### Adding Repository ###
+
+[PaymentRepository](com.yapily.repository.PaymentRepository.java)
+```java
+
+@Repository
+public class PaymentRepository {
+
+    public static final String PENDING_KEY = "pending";
+    @Autowired
+    private ReactiveRedisTemplate<String, PaymentRequest> pendingPaymentTemplate;
+
+    public Mono<Boolean> storePending(String id, PaymentRequest paymentRequest) {
+        return pendingPaymentTemplate.<String, PaymentRequest>opsForHash().put(PENDING_KEY, id, paymentRequest);
+    }
+
+    public Mono<PaymentRequest> getPending(String consent) {
+        return pendingPaymentTemplate.<String, PaymentRequest>opsForHash().get(PENDING_KEY, consent);
+    }
+    
+}
+```
+
+### Adding Repository ###
