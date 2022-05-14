@@ -2,7 +2,7 @@
 
 An SDK for the Yapily API can be generated through [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli)
 
-```bash
+```shell
 npx @openapitools/openapi-generator-cli generate -i https://api.yapily.com/docs/v3/openapi.json -g java -o ./yapily-sdk
 ```
 
@@ -10,19 +10,19 @@ npx @openapitools/openapi-generator-cli generate -i https://api.yapily.com/docs/
 
 There are various options available for Generating the sdk.
 
-```bash
+```shell
 npx @openapitools/openapi-generator-cli config-help -g java
 ```
 
 ## Generate script ##
 
-```bash
+```shell
 ./generate.sh
 ```
 
 ### Compile generated sdk ###
 
-```bash
+```shell
 cd yapily-sdk
 mvn clean install
 ```
