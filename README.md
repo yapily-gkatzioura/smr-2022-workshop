@@ -1,12 +1,13 @@
-# README #
+# Yapily Silicon Milkroundabout #
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+### Import the Yapily Rest API on postman
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+[Postman Collection](https://api.yapily.com/docs/v3/openapi.json)
+
+### Generate SDK through swagger ###
+
+[Generate SDK using openapi-generator-cli](swagger-gen-java/generate.sh)
 
 ### How do I get set up? ###
 
